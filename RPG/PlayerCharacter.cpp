@@ -34,32 +34,37 @@ PlayerCharacter::~PlayerCharacter(){
 //}
 
 void PlayerCharacter::control(const Action action){
-	switch (action){
-	case Action::moveNorth:
-		move(Position(0, mCombatableSettings.mStatisticsSettings.mSpeed));
-		break;
-	case Action::moveSouth:
-		move(Position(0, -mCombatableSettings.mStatisticsSettings.mSpeed));
-		break;
-	case Action::moveWest:
-		move(Position(-mCombatableSettings.mStatisticsSettings.mSpeed, 0));
-		break;
-	case Action::moveEast:
-		move(Position(mCombatableSettings.mStatisticsSettings.mSpeed, 0));
-		break;
-	case Action::enterCombat:
-		mTargetOption.set_options(mMovableSettings.mMap.getAllAtPositionWhere(mMovableSettings.mPosition, 
-			[](ICharacter* character){return character->getFaction().first != Faction::player;}));
-		mTargetOption.output();
-		mTargetOption.input();
-		ICharacter* chosenTarget = mTargetOption.get_result();
-		if (chosenTarget){
-			trigger(Trigger::attack);
-			dealDamage(*chosenTarget, *this);
+	if (!isDead()){
+		switch (action){
+		case Action::moveNorth:
+			move(Position(0, mCombatableSettings.mStatisticsSettings.mSpeed));
+			break;
+		case Action::moveSouth:
+			move(Position(0, -mCombatableSettings.mStatisticsSettings.mSpeed));
+			break;
+		case Action::moveWest:
+			move(Position(-mCombatableSettings.mStatisticsSettings.mSpeed, 0));
+			break;
+		case Action::moveEast:
+			move(Position(mCombatableSettings.mStatisticsSettings.mSpeed, 0));
+			break;
+		case Action::enterCombat:
+			mTargetOption.set_options(mMovableSettings.mMap.getAllAtPositionWhere(mMovableSettings.mPosition,
+				[](ICharacter* character){return character->getFaction().first != Faction::player; }));
+			mTargetOption.output();
+			mTargetOption.input();
+			ICharacter* chosenTarget = mTargetOption.get_result();
+			if (chosenTarget){
+				trigger(Trigger::attack);
+				dealDamage(*chosenTarget, *this);
+			}
+			else{
+				*mOutputStream << "No enemies on site." << '\n';
+			}
 		}
-		else{
-			*mOutputStream << "No targets available at site." << '\n';
-		}
+	}
+	else{
+		*mOutputStream << "You are dead! No actions possible." << '\n';
 	}
 }
 
@@ -70,6 +75,12 @@ void PlayerCharacter::trigger(const Trigger trigger){// no parameters, only resp
 		*mOutputStream << getName() << " yells: " << "I am the almighty " << getName() << " and I am not afraid!" << '\n';
 		break;
 	case Trigger::getAttacked:
+		if (!isDead()){
+			*mOutputStream << getName() << " cries: " << "Arrrgh!" << '\n';
+		}
+		else{
+			*mOutputStream << "*SMASH*" << '\n';
+		}
 		break;
 	default:
 		break;

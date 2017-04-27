@@ -40,19 +40,28 @@ float ICharacter::getDamage(){
 float ICharacter::getHealth(){
 	return mCombatableSettings.mStatisticsSettings.mHealth;
 }
+bool ICharacter::isDead(){
+	return mCombatableSettings.mStatisticsSettings.mHealth <= 0.0f;
+}
 
 int ICharacter::getSpeed(){
 	return mCombatableSettings.mStatisticsSettings.mSpeed;
 }
 
-void ICharacter::dealDamage(ICombatable& character, ICombatable& dealer){
-	mLastAttacker = &dealer;
-	character.takeDamage(mCombatableSettings.mStatisticsSettings.mDamage);
+void ICharacter::dealDamage(ICombatable& target, ICombatable& attacker){
+	*mOutputStream << attacker.getName() << " attacked " << target.getName() << "." << '\n';
+	target.takeDamage(mCombatableSettings.mStatisticsSettings.mDamage, &attacker);
+}
+
+void ICharacter::takeDamage(float damage, ICombatable* attacker){
+	mCombatableSettings.mStatisticsSettings.mHealth -= damage;
+	mCombatableSettings.mLastAttacker = attacker;
+	*mOutputStream << getName() << " received " << damage << " damage. (now " << getHealth() << " health points)" << '\n';
 	trigger(Trigger::getAttacked);
 }
 
-void ICharacter::takeDamage(float damage){
-	mCombatableSettings.mStatisticsSettings.mHealth -= damage;
+ICombatable* ICharacter::getLastAttacker(){
+	return mCombatableSettings.mLastAttacker;
 }
 
 Position ICharacter::getPosition(){

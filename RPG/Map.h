@@ -29,6 +29,7 @@ namespace RPG{
 		void locate_absolute(Position& absolute, T obj);//same here
 		void erase(T obj);//delete from the map
 		std::set<T> getAllAtPositionWhere(Position& absolute, std::function<bool(T)> boolExpression);
+		std::set<T> getAllWhere(std::function<bool(T)> boolExpression);
 		std::set<T> getAllAtPosition(Position& absolute);
 	private:
 		void add(Position& pos, T obj);
@@ -153,6 +154,21 @@ namespace RPG{
 		for (std::set<T>::iterator iter = referencedSet.begin(); iter != referencedSet.end(); ++iter){
 			if (boolExpression(*iter))
 				filteredSet.insert(*iter);
+		}
+		return filteredSet;
+	}
+
+	template <typename T>
+	std::set<T> Map<T>::getAllWhere(std::function<bool(T)> boolExpression){
+		std::set<T> filteredSet;
+		for (std::vector< std::set<T> >::iterator vIter = mMap.begin(); vIter != mMap.end(); ++vIter){
+			std::set<T>& referencedSet = *vIter;
+			{
+				for (std::set<T>::iterator iter = referencedSet.begin(); iter != referencedSet.end(); ++iter){
+					if (boolExpression(*iter))
+						filteredSet.insert(*iter);
+				}
+			}
 		}
 		return filteredSet;
 	}

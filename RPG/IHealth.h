@@ -3,5 +3,6 @@
 class IHealth {
 public:
 	virtual float getHealth() = 0;
+	virtual bool isDead() = 0;
 };
 #endif

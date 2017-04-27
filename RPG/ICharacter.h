@@ -31,8 +31,10 @@ public:
 	virtual std::pair<Faction, std::string> getFaction() override;
 	float getDamage() override;
 	virtual void dealDamage(ICombatable& target, ICombatable& dealer) override;
-	virtual void takeDamage(float amount) override;
+	virtual void takeDamage(float amount, ICombatable* attacker) override;
+	ICombatable* getLastAttacker() override;
 	float getHealth() override;
+	bool isDead() override;
 	virtual int getSpeed() override;
 	Position getPosition() override;
 	void setPosition(Position& pos) override;
@@ -45,7 +47,6 @@ protected:
 	CombatableSettings mCombatableSettings;
 	MovableSettings<ICharacter*> mMovableSettings;
 	IOutputStream* mOutputStream;
-	ICombatable* mLastAttacker;
 	/*std::string mName;
 	std::string mRace;
 	std::pair<Faction, std::string> mFaction;

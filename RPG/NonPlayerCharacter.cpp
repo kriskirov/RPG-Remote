@@ -28,16 +28,25 @@ NonPlayerCharacter& NonPlayerCharacter::operator=(const NonPlayerCharacter& rhs)
 	return *this;
 }
 
-void NonPlayerCharacter::trigger(const Trigger trigger){// no parameters, only responses
-	switch (trigger)
+void NonPlayerCharacter::trigger(const Trigger pTrigger){// no parameters, only responses
+	switch (pTrigger)
 	{
 	case Trigger::attack:
+		if (!isDead()){
+			if (mCombatableSettings.mLastAttacker){
+				dealDamage(*mCombatableSettings.mLastAttacker, *this);
+			}
+		}
 		break;
 	case Trigger::getAttacked:
-		*mOutputStream << getName() << " yells: " << "HEEEELP! I am getting attacked!" << '\n';
-		if (mLastAttacker){
-			dealDamage(*mLastAttacker, *this);
+		if (!isDead()){
+			*mOutputStream << getName() << " yells: " << "Aaaaghhhh!" << '\n';
 		}
+		else{
+			*mOutputStream << "*SMASH*" << '\n';
+			*mOutputStream << getName() << " is dead." << '\n';
+		}
+		trigger(Trigger::attack);
 		break;
 	default:
 		break;

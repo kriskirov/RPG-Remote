@@ -78,6 +78,7 @@
   <ItemGroup>
     <ClInclude Include="AutoConsoleOption.h" />
     <ClInclude Include="ConsoleOutputStream.h" />
+    <ClInclude Include="GameConditions.h" />
     <ClInclude Include="IAutoOption.h" />
     <ClInclude Include="IOutputStream.h" />
     <ClInclude Include="MovableSettings.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="ConsoleOutputStream.cpp" />
     <ClCompile Include="ConsoleReader.cpp" />
     <ClCompile Include="ConsoleWriter.cpp" />
+    <ClCompile Include="GameConditions.cpp" />
     <ClCompile Include="ICharacter.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="Human.cpp" />

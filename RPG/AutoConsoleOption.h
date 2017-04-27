@@ -54,13 +54,14 @@ void AutoConsoleOption<RESULT_TYPE>::output(){
 	//concatinate the static messege with numbers from 1 to N that represent each CHOICE of the SET of CHOICES
 	if (!mValueOptions.empty()){
 		typedef std::set<RESULT_TYPE>::iterator Iter;
-		unsigned int counter = 0;
-		mStaticOutputMessege += '\n';
+		unsigned int counter = 1;
+		std::string messege;
+		messege += mStaticOutputMessege + '\n';
 		for (Iter iter = mValueOptions.begin(); iter != mValueOptions.end(); ++iter, ++counter){
-			mStaticOutputMessege += std::to_string(counter) + std::string(**iter) + '\n'; //must make overriden methods to take care of . and -> operator differences. also *Iter must be convertible to std::string
+			messege += "'" + std::to_string(counter) + "'" + " " + std::string(**iter) + '\n'; //must make overriden methods to take care of . and -> operator differences. also *Iter must be convertible to std::string
 		}
-		mStaticOutputMessege += '\n';
-		cout << mStaticOutputMessege;
+		messege += '\n';
+		cout << messege;
 	}
 	else{
 		cout << mNoOptionsMessege << '\n';
@@ -72,7 +73,7 @@ void AutoConsoleOption<RESULT_TYPE>::input(){
 	//take the SET of CHOICES
 	typedef std::set<RESULT_TYPE>::iterator Iter;
 	std::map<unsigned int, RESULT_TYPE> mOptions;
-	unsigned int mMaxOptionNumber = 0;
+	unsigned int mMaxOptionNumber = 1;
 	//construct a MAP from it. The MAP is constructed with a NUMBER as a key and the respective value from the SET as a VALUE
 	for (Iter iter = mValueOptions.begin(); iter != mValueOptions.end(); ++iter, ++mMaxOptionNumber){
 		mOptions.insert(std::pair<unsigned int,RESULT_TYPE>(mMaxOptionNumber, *iter));

@@ -7,6 +7,7 @@
 class ICombatable : public IIdentifiable, public IStatistics, public ITriggerable {
 public:
 	virtual void dealDamage(ICombatable& target, ICombatable& dealer) = 0;
-	virtual void takeDamage(float amount) = 0;
+	virtual void takeDamage(float amount, ICombatable* attacker) = 0;
+	virtual ICombatable* getLastAttacker() = 0;
 };
 #endif
