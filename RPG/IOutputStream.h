@@ -1,6 +1,8 @@
 #ifndef I_OUTPUT_STREAM
 #define I_OUTPUT_STREAM
+
 #include <string>
+
 class IOutputStream{
 public:
 	virtual IOutputStream& operator<<(const bool object) = 0;

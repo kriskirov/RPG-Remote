@@ -1,16 +1,14 @@
 #ifndef MAP_H
 #define MAP_H
+
 #include "Position.h"
 #include "IPosition.h"
 #include <math.h>
 #include <vector>
 #include <set>
 #include <type_traits>
-#include <stdexcept>
-#include <iostream>
 #include <algorithm>
 #include <cassert>
-#include <iostream>
 #include <vector>
 #include <functional>
 
@@ -44,9 +42,7 @@ namespace RPG{
 		std::vector< std::set<T> > mMap;
 	};
 
-	//<summary>
 	//NOTE: The map size accepts only sizes greater than 0. Any other size will be automatically assumed as 1.
-	//</summary>
 	template <typename T>
 	Map<T>::Map(unsigned int horizontalSize, unsigned int verticalSize){
 		assert(horizontalSize > 0 && verticalSize > 0);
@@ -119,7 +115,6 @@ namespace RPG{
 	void Map<T>::remove(T obj){
 		Position result;
 		if (find(obj, &result)){
-			//std::cout << mMap.at(position2Dto1D(result)).erase(obj) << " element erased!" << std::endl;
 			mMap.at(position2Dto1D(result)).erase(obj);
 		}
 	}

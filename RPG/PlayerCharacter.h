@@ -6,7 +6,14 @@ class PlayerCombatManager;
 
 class PlayerCharacter : public ICharacter, public IControllable {
 public: 
-	PlayerCharacter(const CombatableSettings& combatableSettings, const MovableSettings<ICharacter*>& movableSettings, IOutputStream& outputStream, IAutoOption<ICharacter*>& targetOption);
+	PlayerCharacter(
+		const CombatableSettings& combatableSettings, 
+		const MovableSettings<ICharacter*>& movableSettings,
+		const QuotesSettings& quoteSettings,
+		IOutputStream& outputStream,
+		IAutoOption<ICharacter*>& targetOption
+		);
+
 	PlayerCharacter(const PlayerCharacter& rhs) = delete;
 	virtual ~PlayerCharacter();
 

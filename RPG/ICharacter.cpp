@@ -1,10 +1,15 @@
 #include "ICharacter.h"
 #include <cassert>
 
-ICharacter::ICharacter(const CombatableSettings& combatableSettings, const MovableSettings<ICharacter*>& movableSettings, IOutputStream &outputStream) : 
-mCombatableSettings(combatableSettings), 
-mMovableSettings(movableSettings),
-mOutputStream(&outputStream)
+ICharacter::ICharacter(
+	const CombatableSettings& combatableSettings, 
+	const MovableSettings<ICharacter*>& movableSettings,
+	const QuotesSettings& quotesSettings,
+	IOutputStream &outputStream) : 
+	mCombatableSettings(combatableSettings), 
+	mMovableSettings(movableSettings),
+	mQuoteSettings(quotesSettings),
+	mOutputStream(&outputStream)
 {
 	mMovableSettings.mMap.locate_absolute(mMovableSettings.mPosition, this);
 }
@@ -12,6 +17,7 @@ mOutputStream(&outputStream)
 ICharacter::ICharacter(const ICharacter& rhs) : 
 mCombatableSettings(rhs.mCombatableSettings),
 mMovableSettings(rhs.mMovableSettings),
+mQuoteSettings(rhs.mQuoteSettings),
 mOutputStream(rhs.mOutputStream)
 {
 	
@@ -74,25 +80,9 @@ void ICharacter::setPosition(Position& pos){
 
 void ICharacter::move(Position& offset){
 	mMovableSettings.mMap.locate_relative(offset, this);
-	//WARNING: coupling
 	*mOutputStream << mCombatableSettings.mIdentifiableSettings.mName << "'s position is now: "
 		<< mMovableSettings.mPosition.x << ":" << mMovableSettings.mPosition.y << '\n' << '\n';
-	/*std::cout << std::endl << mCombatableSettings.mIdentifiableSettings.mName << "'s position is now: " 
-		<< mMovableSettings.mPosition.x << ":" << mMovableSettings.mPosition.y << std::endl << std::endl;*/
 }
-
-//void ICharacter::trigger(const Trigger trigger){// no parameters, only responses
-//	switch (trigger)
-//	{
-//	case Trigger::attack:
-//		break;
-//	case Trigger::getAttacked:
-//		std::cout << getName() << " yells: " <<"HEEEELP! I am getting attackhed!";
-//		break;
-//	default:
-//		break;
-//	}
-//}
 
 bool ICharacter::operator==(const ICharacter& rhs) const{
 	return (this == &rhs);
@@ -106,6 +96,7 @@ ICharacter& ICharacter::operator=(const ICharacter& rhs){
 	if (this != &rhs){
 		mCombatableSettings = rhs.mCombatableSettings;
 		mMovableSettings = rhs.mMovableSettings;
+		mQuoteSettings = rhs.mQuoteSettings;
 		mOutputStream = rhs.mOutputStream;
 	}
 	return *this;

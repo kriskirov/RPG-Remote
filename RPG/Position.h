@@ -2,8 +2,8 @@
 #define POSITION_H
 
 struct Position{
-	int x, y;//2 axis
-	Position();//sets the position to 0,0
+	int x, y;
+	Position();
 	Position(int xPos, int yPos);
 
 	Position operator+(Position& rhs);

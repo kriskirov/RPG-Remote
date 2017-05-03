@@ -1,5 +1,6 @@
 #ifndef I_OPTION_H
 #define I_OPTION_H
+
 #include <functional>
 
 template<typename RESULT_TYPE>

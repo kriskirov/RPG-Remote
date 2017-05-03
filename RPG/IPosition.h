@@ -1,5 +1,6 @@
 #ifndef I_POSITION_H
 #define I_POSITION_H
+
 #include "Position.h"
 #include "Map.h"
 

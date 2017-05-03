@@ -16,27 +16,15 @@
     <Filter Include="Header Files\Interfaces">
       <UniqueIdentifier>{515e1ef9-86b6-4cbb-b2a5-4d1b0de5f259}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Controller">
-      <UniqueIdentifier>{de3e63fc-bcd7-4dde-b090-949b8cfeddfc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Controller">
       <UniqueIdentifier>{1d7ae1ab-087f-4fb1-9b2f-b153ba3ac318}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\Enumerations">
       <UniqueIdentifier>{87fbc860-0e84-4719-8662-59b141451979}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Enumerations">
-      <UniqueIdentifier>{13fa1024-c0c1-473e-bf93-52561bcb0693}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Human.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Troll.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="IIdentifiable.h">
@@ -70,9 +58,6 @@
       <Filter>Header Files\Controller</Filter>
     </ClInclude>
     <ClInclude Include="ICharacter.h">
-      <Filter>Header Files\Interfaces</Filter>
-    </ClInclude>
-    <ClInclude Include="IWriter.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
     <ClInclude Include="ConsoleWriter.h">
@@ -126,9 +111,6 @@
     <ClInclude Include="ITriggerable.h">
       <Filter>Header Files\Interfaces</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerCombatManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerCharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -159,6 +141,21 @@
     <ClInclude Include="GameConditions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IInputStream.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="IWriter.h">
+      <Filter>Header Files\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsoleInputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputOutputStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QuotesSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -166,15 +163,6 @@
     </ClCompile>
     <ClCompile Include="Position.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Human.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Troll.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Controller.cpp">
-      <Filter>Source Files\Controller</Filter>
     </ClCompile>
     <ClCompile Include="ICharacter.cpp">
       <Filter>Source Files</Filter>
@@ -191,9 +179,6 @@
     <ClCompile Include="CombatableSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerCombatManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerCharacter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -207,6 +192,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameConditions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleInputStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputOutputStream.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QuotesSettings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

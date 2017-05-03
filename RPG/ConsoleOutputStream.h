@@ -1,7 +1,9 @@
 #ifndef CONSOLE_OUTPUT_STREAM
 #define CONSOLE_OUTPUT_STREAM
+
 #include "IOutputStream.h"
 #include <ostream>
+
 class ConsoleOutputStream : public IOutputStream{
 public:
 	ConsoleOutputStream(std::ostream& outputStream);

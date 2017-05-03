@@ -1,5 +1,6 @@
 #ifndef I_CHARACTER_H
 #define I_CHARACTER_H
+
 #include "IIdentifiable.h"
 #include "IStatistics.h"
 #include "ICombatable.h"
@@ -12,13 +13,20 @@
 #include "Faction.h"
 #include "CombatableSettings.h"
 #include "MovableSettings.h"
+#include "QuotesSettings.h"
 #include "IOption.h"
 #include "IOutputStream.h"
 
 class ICharacter : public ICombatable, public IMovable {
 public:
-	//ICharacter(const std::string& name, const std::pair<Faction,std::string> faction, RPG::Map<ICharacter*>& map, const Position& position, float damage, float health);
-	ICharacter(const CombatableSettings& combatableSettings, const MovableSettings<ICharacter*>& movableSettings, IOutputStream& outputStream);
+	
+	ICharacter(
+		const CombatableSettings& combatableSettings, 
+		const MovableSettings<ICharacter*>& movableSettings,
+		const QuotesSettings& quotesSettings,
+		IOutputStream& outputStream
+		);
+
 	ICharacter(const ICharacter& rhs);
 	virtual ~ICharacter();
 
@@ -39,21 +47,13 @@ public:
 	Position getPosition() override;
 	void setPosition(Position& pos) override;
 	virtual void move(Position& offset) override;
-	//virtual void control(Action& action) override;
-	//virtual void trigger(const Trigger trigger) override;
 	operator std::string() const;
 
 protected:
 	CombatableSettings mCombatableSettings;
 	MovableSettings<ICharacter*> mMovableSettings;
+	QuotesSettings mQuoteSettings;
 	IOutputStream* mOutputStream;
-	/*std::string mName;
-	std::string mRace;
-	std::pair<Faction, std::string> mFaction;
-	float mDamage;
-	float mHealth;
-	int mSpeed;
-	Position mPosition;
-	RPG::Map<ICharacter*>* mMap;*/
 };
+
 #endif // !CHARACTER_H

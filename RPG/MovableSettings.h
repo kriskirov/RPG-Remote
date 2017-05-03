@@ -1,5 +1,6 @@
 #ifndef MOVABLE_SETTINGS_H
 #define MOVABLE_SETTINGS_H
+
 #include "Map.h"
 
 template <typename T>
