@@ -103,5 +103,8 @@ ICharacter& ICharacter::operator=(const ICharacter& rhs){
 }
 
 ICharacter::operator std::string() const {
-	return mCombatableSettings.mIdentifiableSettings.mName + " " + std::to_string(mCombatableSettings.mStatisticsSettings.mHealth);
+	return mCombatableSettings.mIdentifiableSettings.mName 
+		+ " : " 
+		+ std::to_string(mCombatableSettings.mStatisticsSettings.mHealth)
+		+ " health points.";
 }

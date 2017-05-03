@@ -14,17 +14,17 @@ int main(){
 	//Composition root
 
 	QuotesSettings playerQuotes = QuotesSettings(
-		"I shall not be stopped by evil!\n",
-		"Ughhh...\n",
-		"*SMASH*\n",
+		"You shouts out: I shall not be stopped by evil!\n",
+		"You agonizes: Ughhh...\n",
+		"The sound *SMASH* comes from Your dead body.\n",
 		"You are dead.\n"
 		);
 
 	QuotesSettings enemyQuotes = QuotesSettings(
-		"Fresh meat!\n",
-		"AAArrrghhh!\n",
-		"*SMASH*\n",
-		"An enemy has died.\n"
+		"Enemy groans: Fresh meat!\n",
+		"Enemy cries in pain: AAArrrghhh!\n",
+		"The sound *SMASH* comes from Your enemy's dead body.\n",
+		"This enemy has died.\n"
 		);
 
 	ConsoleOutputStream consoleOutputStream = ConsoleOutputStream(cout);
@@ -83,6 +83,10 @@ int main(){
 	
 	playChar = new PlayerCharacter(combSettings, movSettings, playerQuotes, consoleOutputStream, targetOption);
 	GameConditions gameConditions = GameConditions(map,*playChar,consoleOutputStream);
+
+	consoleOutputStream << '\n' << "Welcome to the world of \"Another RPG\"!"
+		<< "\nGame goal is: Kill all enemies on the map." << '\n'
+		<< "Initial coordinates: " << playChar->getPosition().x << ":" << playChar->getPosition().y << '\n';
 
 	ConsoleReader consoleReader = ConsoleReader(cin);
 
