@@ -1,7 +1,12 @@
 #include "NonPlayerCharacter.h"
 
-NonPlayerCharacter::NonPlayerCharacter(const CombatableSettings& combatableSettings, const MovableSettings<ICharacter*>& movableSettings, IOutputStream& outputStream) :
-ICharacter(combatableSettings, movableSettings, outputStream)
+NonPlayerCharacter::NonPlayerCharacter(
+	const CombatableSettings& combatableSettings,
+	const MovableSettings<ICharacter*>& movableSettings,
+	const QuotesSettings& quoteSettings,
+	IOutputStream& outputStream
+	) :
+	ICharacter(combatableSettings, movableSettings, quoteSettings, outputStream)
 {
 
 }
@@ -17,6 +22,7 @@ NonPlayerCharacter::~NonPlayerCharacter(){
 bool NonPlayerCharacter::operator==(const NonPlayerCharacter& rhs){
 	return ICharacter::operator==(rhs);
 }
+
 bool NonPlayerCharacter::operator!=(const NonPlayerCharacter& rhs){
 	return !((*this) == rhs);
 }
@@ -28,7 +34,7 @@ NonPlayerCharacter& NonPlayerCharacter::operator=(const NonPlayerCharacter& rhs)
 	return *this;
 }
 
-void NonPlayerCharacter::trigger(const Trigger pTrigger){// no parameters, only responses
+void NonPlayerCharacter::trigger(const Trigger pTrigger){
 	switch (pTrigger)
 	{
 	case Trigger::attack:
@@ -40,11 +46,11 @@ void NonPlayerCharacter::trigger(const Trigger pTrigger){// no parameters, only 
 		break;
 	case Trigger::getAttacked:
 		if (!isDead()){
-			*mOutputStream << getName() << " yells: " << "Aaaaghhhh!" << '\n';
+			*mOutputStream << mQuoteSettings.mGetAttacked;
 		}
 		else{
-			*mOutputStream << "*SMASH*" << '\n';
-			*mOutputStream << getName() << " is dead." << '\n';
+			*mOutputStream << mQuoteSettings.mGetAttackedWhileDead;
+			*mOutputStream << mQuoteSettings.mDead;
 		}
 		trigger(Trigger::attack);
 		break;

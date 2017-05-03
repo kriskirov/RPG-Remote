@@ -1,5 +1,6 @@
 #ifndef CONSOLE_READER_H
 #define CONSOLE_READER_H
+
 #include "IReader.h"
 #include <istream>
 

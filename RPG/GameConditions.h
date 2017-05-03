@@ -1,10 +1,17 @@
 #ifndef GAME_CONDITIONS_H
 #define GAME_CONDITIONS_H
+
 #include "ICharacter.h"
 #include "Map.h"
+
 class GameConditions{
 public:
-	GameConditions(RPG::Map<ICharacter*>& mapToClearFromEnemies, ICombatable& playerCharacter);
+	GameConditions(
+		RPG::Map<ICharacter*>& mapToClearFromEnemies, 
+		ICombatable& playerCharacter,
+		IOutputStream& outputStream
+		);
+
 	GameConditions(const GameConditions& rhs) = default;
 	GameConditions& operator=(const GameConditions& rhs);
 
@@ -13,5 +20,6 @@ public:
 private:
 	RPG::Map<ICharacter*>& mMapToClearFromEnemies;
 	ICombatable& mPlayerCharacter;
+	IOutputStream& mOutputStream;
 };
 #endif

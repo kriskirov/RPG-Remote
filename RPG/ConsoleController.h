@@ -1,5 +1,6 @@
 #ifndef CONSOLE_CONTROLLER_H
 #define CONSOLE_CONTROLLER_H
+
 #include "IController.h"
 #include"IControllable.h"
 #include"IReader.h"
@@ -9,7 +10,12 @@
 template<typename RESULT_TYPE>
 class ConsoleController : public IController<RESULT_TYPE>{
 public:
-	ConsoleController(IControllable& controllable, IOption<RESULT_TYPE>& option, unique_map<Action,RESULT_TYPE>& controls);
+	ConsoleController(
+		IControllable& controllable,
+		IOption<RESULT_TYPE>& option,
+		unique_map<Action,RESULT_TYPE>& controls
+		);
+
 	ConsoleController(const ConsoleController& rhs);
 	virtual ~ConsoleController();
 	ConsoleController& operator=(const ConsoleController& rhs);
@@ -18,7 +24,14 @@ public:
 };
 
 template <typename RESULT_TYPE>
-ConsoleController<RESULT_TYPE>::ConsoleController(IControllable& controllable, IOption<RESULT_TYPE>& option, unique_map<Action,RESULT_TYPE>& controls) :IController(controllable, option, controls){
+ConsoleController<RESULT_TYPE>::ConsoleController(
+	IControllable& controllable,
+	IOption<RESULT_TYPE>& option,
+	unique_map<Action,RESULT_TYPE>& controls
+	) :
+	IController(controllable, option, controls)
+{
+
 }
 
 template<typename RESULT_TYPE>

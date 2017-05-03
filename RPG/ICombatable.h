@@ -1,5 +1,6 @@
 #ifndef I_COMBATABLE_H
 #define I_COMBATABLE_H
+
 #include "IIdentifiable.h"
 #include "IStatistics.h"
 #include "ITriggerable.h"
