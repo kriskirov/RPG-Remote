@@ -134,5 +134,12 @@ int main(){
 	
 	delete playChar;
 	delete enemy;
+	ConsoleOption<string> exitKeyOption = ConsoleOption<string>("Enter \"quit\" to terminate the application...",
+		[](string x){
+		return (x == "quit");
+	},
+	"The command to quit is \"quit\".");
+	exitKeyOption.output();
+	exitKeyOption.input();
 	return 0;
 }
