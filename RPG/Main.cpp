@@ -52,6 +52,9 @@ int main(){
 	Position pos1 = Position(0, 0);
 	Position pos2 = Position(2, 2);
 
+	consoleOutputStream << "Welcome to the world of \"Another RPG\"!\n\n"
+		<< "Customize Your character's details...\n";
+
 	ConsoleOption<string> characterNameMenu = ConsoleOption<string>("Enter Your character's name: ", 
 		[](string x){
 		return (x.length() > 2);
