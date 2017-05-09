@@ -14,7 +14,7 @@ public:
 
 	virtual void output() = 0;
 	virtual void input() = 0;
-	RESULT_TYPE get_result();
+	RESULT_TYPE getResult();
 protected:
 	RESULT_TYPE mResult;
 };
@@ -45,7 +45,7 @@ IOption<RESULT_TYPE>& IOption<RESULT_TYPE>::operator=(const IOption& rhs){
 }
 
 template<typename RESULT_TYPE>
-RESULT_TYPE IOption<RESULT_TYPE>::get_result(){
+RESULT_TYPE IOption<RESULT_TYPE>::getResult(){
 	return mResult;
 }
 #endif

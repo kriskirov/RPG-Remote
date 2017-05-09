@@ -54,7 +54,7 @@ template<typename RESULT_TYPE>
 void ConsoleController<RESULT_TYPE>::execute(){
 	mOption.output();
 	mOption.input();
-	RESULT_TYPE& r = mOption.get_result();
+	RESULT_TYPE& r = mOption.getResult();
 	Action action;
 	mControls.getKey(r,action);
 	mControllable.control(action);

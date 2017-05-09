@@ -33,13 +33,13 @@ void PlayerCharacter::control(const Action action){
 			move(Position(mCombatableSettings.mStatisticsSettings.mSpeed, 0));
 			break;
 		case Action::enterCombat:
-			mTargetOption.set_options(mMovableSettings.mMap.getAllAtPositionWhere(
+			mTargetOption.setOptions(mMovableSettings.mMap.getAllAtPositionWhere(
 				mMovableSettings.mPosition,
 				[](ICharacter* character){return character->getFaction().first != Faction::player; })
 				);
 			mTargetOption.output();
 			mTargetOption.input();
-			ICharacter* chosenTarget = mTargetOption.get_result();
+			ICharacter* chosenTarget = mTargetOption.getResult();
 			if (chosenTarget){
 				trigger(Trigger::attack);
 				dealDamage(*chosenTarget, *this);

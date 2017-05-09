@@ -22,13 +22,13 @@ public:
 	IAutoOption<RESULT_TYPE>& operator= (const IAutoOption& rhs) = default;
 
 	//step 1 - set_options, step 2 - output, step 3 - input, step 4 - get_result
-	void set_options(std::set<RESULT_TYPE>& inputOptions);
+	void setOptions(std::set<RESULT_TYPE>& inputOptions);
 	//step 1 - set_options, step 2 - output, step 3 - input, step 4 - get_result
 	virtual void output() = 0;
 	//step 1 - set_options, step 2 - output, step 3 - input, step 4 - get_result
 	virtual void input() = 0;
 	//step 1 - set_options, step 2 - output, step 3 - input, step 4 - get_result
-	RESULT_TYPE get_result();
+	RESULT_TYPE getResult();
 
 protected:
 	std::set<RESULT_TYPE> mValueOptions;
@@ -65,12 +65,12 @@ IAutoOption<RESULT_TYPE>::~IAutoOption(){
 }
 
 template<typename RESULT_TYPE>
-void IAutoOption<RESULT_TYPE>::set_options(std::set<RESULT_TYPE>& valueOptions){
+void IAutoOption<RESULT_TYPE>::setOptions(std::set<RESULT_TYPE>& valueOptions){
 	mValueOptions = valueOptions;
 }
 
 template<typename RESULT_TYPE>
-RESULT_TYPE IAutoOption<RESULT_TYPE>::get_result(){
+RESULT_TYPE IAutoOption<RESULT_TYPE>::getResult(){
 	return mResult;
 }
 #endif

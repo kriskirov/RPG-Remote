@@ -63,7 +63,7 @@ int main(){
 	
 	characterNameMenu.output();
 	characterNameMenu.input();
-	string playerName = characterNameMenu.get_result();
+	string playerName = characterNameMenu.getResult();
 
 	ConsoleOption<string> characterRaceMenu = ConsoleOption<string>("Enter Your character's race: ", 
 		[&gameRaces](string input){
@@ -73,7 +73,7 @@ int main(){
 	characterRaceMenu.output();
 	characterRaceMenu.input();
 	Race pRace;
-	gameRaces.getKey(characterRaceMenu.get_result(), pRace);
+	gameRaces.getKey(characterRaceMenu.getResult(), pRace);
 	std::pair<Race, string> playerRace = gameRaces.getPair(pRace);
 
 	PlayerCharacter* playChar;
